@@ -47,7 +47,10 @@
 			});
 			window.addEventListener("load", function() {
 				displayKarutaLogin();
+				//CAS après 20 secondes
+				setTimeout(function(){callCAS();},20000);
 			});
+			
 			$('[data-toggle="tooltip"]').tooltip({
 				trigger : 'hover'
 			})  // to avoid tooltip when button is clicked
