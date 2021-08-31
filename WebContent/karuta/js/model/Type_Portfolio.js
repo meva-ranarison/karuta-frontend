@@ -529,6 +529,8 @@ UIFactory["Portfolio"].displayPortfolio = function(destid,type,langcode,edit)
 		type = 'standard';
 	g_display_type = type;
 	//---------------------------------------
+	$("#main-body").attr("userrole",g_userroles[0]);
+	//---------------------------------------
 	if (type=='standard'){
 		html += "	<div id='main-row' class='row'>";
 		html += "		<div class='col-sm-3 col-md-3' id='sidebar'></div>";

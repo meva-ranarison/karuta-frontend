@@ -150,7 +150,7 @@ function getNavBar(type,portfolioid,edit)
 	if (type=='login') {
 		html += "				<li><a href='mailto:"+technical_support+"?subject="+karutaStr[LANG]['technical_support']+" ("+appliname+")' class='navbar-icon' data-title='"+karutaStr[LANG]["button-technical-support"]+"' data-tooltip='true' data-placement='bottom'><span class='glyphicon glyphicon-envelope' data-title='"+karutaStr[LANG]["technical_support"]+"' data-tooltip='true' data-placement='bottom'></span></a></li>";
 	} else {
-		html += "				<li><a  onclick='show_list_page()' class='navbar-icon' data-title='"+karutaStr[LANG]["home"]+"' data-tooltip='true' data-placement='bottom'><span class='glyphicon glyphicon-home'></span></a></li>";
+		html += "				<li><a id='home-icon' onclick='show_list_page()' class='navbar-icon' data-title='"+karutaStr[LANG]["home"]+"' data-tooltip='true' data-placement='bottom'><span class='glyphicon glyphicon-home'></span></a></li>";
 		html += "				<li><a href='javascript:displayTechSupportForm()' class='navbar-icon' data-title='"+karutaStr[LANG]["technical_support"]+"' data-tooltip='true' data-placement='bottom'><span class='glyphicon glyphicon-envelope'></span></a></li>";
 	}
 	html += "			</ul>";
