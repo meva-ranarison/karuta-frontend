@@ -40,6 +40,7 @@ karutaStr["fr"]["button-hide"] = "Cacher";
 karutaStr["fr"]["button-2world"] = "URL publique";
 karutaStr["fr"]["button-up"] = "Monter";
 karutaStr["fr"]["button-reload"] = "Recharger";
+karutaStr["fr"]["button-print"] = "Imprimer";
 karutaStr["fr"]["button-edition"] = "Pour passer en mode édition pousser le bouton 'Éditer'.<p style='margin-top:20px;font-size:small'> Ne plus afficher <input type='checkbox' onclick='doNotDisplayEdit()'></p>";
 karutaStr["fr"]["button-refresh"] = "Recharger la page";
 karutaStr["fr"]["button-refresh-report"] = "Rafraîchir le rapport";

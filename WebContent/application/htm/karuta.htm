@@ -147,6 +147,16 @@
 			initKarutaPage();
 			window.addEventListener("load", function() {
 				displayKarutaPage();
+				$(document).ready(function () {
+					console.log(document.cookie);
+					var visit = getCookie("cookie");
+					if (visit == null) {
+						popup();
+						var expire = new Date();
+						expire = new Date(expire.getTime() + 7776000000);
+						document.cookie = "cookie=here; expires=" + expire;
+					}
+				});
 			});
 			$('[data-toggle="tooltip"]').tooltip({
 			    trigger : 'hover'

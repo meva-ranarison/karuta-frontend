@@ -462,24 +462,9 @@ UIFactory["Portfolio"].displayHorizontalMenu2 = function(root,destid,type,langco
 	UIFactory.Node.displayHorizontalMenu2(root,'parent-'+UICom.rootid,type,langcode,edit,rootid);
 };
 
-//======================
-UIFactory["Portfolio"].displayMenu = function(destid,type,langcode,edit,tree)
-//======================
-{	
-	var html = "";
-	if (type==null || type==undefined)
-		type = 'horizontal_menu';
-	if (type=='horizontal_menu'){
-		var nodes = $("*:has(metadata[semantictag='horizontal_menu'])",tree);
-		html += "<ul class='nav nav-tabs header-menu' style='float:none'>";
-		for (var i=0; i<nodes.length; i++){
-			uuid = $(nodes[i]).attr('id');
-			html += "<li><a  id='sidebar_"+uuid+"' class='sidebar'  data-toggle='tab' onclick=\"displayPage('"+uuid+"',99,'standard','"+langcode+"',"+edit+")\">"+UICom.structure["ui"][uuid].getLabel()+"</a></li>";
-		}
-		html += "</ul>";
-		$("#"+destid).html(html);
-	}
-};
+function print_page(){
+    window.print();
+  }
 
 //==============================
 UIFactory["Portfolio"].getNavBar = function (type,langcode,edit,portfolioid)
@@ -498,6 +483,10 @@ UIFactory["Portfolio"].getNavBar = function (type,langcode,edit,portfolioid)
 	html += "	</button>";
 	html += "	<div class='navbar-collapse collapse navbars' id='portfolio-navbars'>";
 	html += "		<ul class='ml-auto navbar-nav'>";
+	//-------------------- PRINT---------------
+	html += "			<li class='nav-item icon'>";
+	html += "				<a id='print-portfolio' onclick='print_page()' class='nav-link fas fa-print' data-title='"+karutaStr[LANG]["button-print"]+"' data-toggle='tooltip' data-placement='bottom'></a>";
+	html += "			</li>";
 	//-------------------- SEARCH -----------
 	html += "			<li class='input-group'>";
 	html += "				<input type='text' id='"+type+"-search-text-input' class='form-control' value='' placeholder='"+karutaStr[LANG]['search-portfolio-text']+"'>";

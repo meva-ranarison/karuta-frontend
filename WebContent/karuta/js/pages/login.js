@@ -99,14 +99,13 @@ function getLogin(encrypt_url,lang)
 {
 	var html = "";
 	html += "<div id='connection-cas'>";
-	html += "<h5>"+karutaStr[LANG]['connection-cas1']+"</h5>";
+	//html += "<h5>"+karutaStr[LANG]['connection-cas1']+"</h5>";
 	html += "<button class='button-login' onclick='javascript:callCAS()'>"+karutaStr[LANG]['login']+"</button>";
-	html += "<h5>"+karutaStr[LANG]['connection-cas2']+"</h5>";
-	html += "</div>";
-
-	html += "<input id='useridentifier' class='form-control' placeholder=\""+karutaStr[LANG]['username']+"\" type='text'>";
-	html += "<input id='password' class='form-control' placeholder=\""+karutaStr[LANG]['password']+"\" type='password'>";
-	html += "<button class='button-login' onclick=\"javascript:callSubmit('"+encrypt_url+"','"+lang+"')\">"+karutaStr[LANG]['login']+"</button>";
+	//html += "<h5>"+karutaStr[LANG]['connection-cas2']+"</h5>";
+	//html += "</div>";
+	//html += "<input id='useridentifier' class='form-control' placeholder=\""+karutaStr[LANG]['username']+"\" type='text'>";
+	//html += "<input id='password' class='form-control' placeholder=\""+karutaStr[LANG]['password']+"\" type='password'>";
+	//html += "<button class='button-login' onclick=\"javascript:callSubmit('"+encrypt_url+"','"+lang+"')\">"+karutaStr[LANG]['login']+"</button>";
 	return html;
 }
 

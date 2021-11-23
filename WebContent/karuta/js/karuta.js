@@ -125,11 +125,101 @@ function setLanguageMenu(js)
 	}
 }
 
+//==============================
+function admin(encrypt_url,lang)
+//==============================
+{
+	var html = "";
+	html += "\n<!-- ==================== Login box ==================== -->";
+	html += "\n<div id='login-window' class='modal fade'>";
+	html += "\n		<div class='modal-dialog'>";
+	html += "\n			<div class='modal-content'>";
+	html += "\n				<div class='modal-header'>";
+	html += "\n					<div id='edit-window-type' style='float:right'></div>";
+	html += "\n					<h2 id='edit-window-title' >Admin</h2>";
+	html += "\n				</div>";
+	html += "\n				<div id='login-window-body' class='modal-body'>";
+	html += "\n 					<input id='useridentifier' class='form-control' placeholder=\""+karutaStr[LANG]['username']+"\" type='text'>";
+	html += "\n 					<input id='password' class='form-control' placeholder=\""+karutaStr[LANG]['password']+"\" type='password'>";
+	html += "\n	 					<button class='login-button' onclick=\"javascript:callSubmit('"+encrypt_url+"','"+lang+"')\">"+karutaStr[LANG]['login']+"</button>";
+	html += "\n				</div>";
+	html += "\n				<div class='modal-footer' id='login-window-footer'></div>";
+	html += "\n			</div>";
+	html += "\n		</div>";
+	html += "\n</div>";
+	html += "\n<!-- ============================================== -->";
+	return html;
+}
+
+//==============================
+function resource(encrypt_url,lang)
+//==============================
+{
+	var html = "";
+	html += "\n<!-- ==================== Login box ==================== -->";
+	html += "\n<div id='resource-window' class='modal fade'>";
+	html += "\n		<div class='modal-dialog'>";
+	html += "\n			<div class='modal-content'>";
+	//html += "\n				<div class='modal-header'>";
+	html += "\n					<i class='fas fa-chalkboard-teacher fa-3x' style='text-align:center;padding-top: 30px; color:#0F059C'></i>";
+	html += "\n					<h3 id='edit-window-title' style='text-align:center;padding-top: 10px;' >Bienvenue sur Portfolio</h3>";
+	//html += "\n				</div>";
+	html += "\n				<div id='resource-window-body' class='modal-body' style='text-align:center'>";
+	html += "\n					<p id='edit-window-title' style='text-align:center;'>Pour votre première connexion, prenez connaissance des supports fournis dans l'onglet <span style='color:#0F059C;'>Aides</span></p>";
+	html += "\n	 					<button class='btn' onclick=\"javascript:$('#resource-window').modal('hide');\" style='text-align:center; background-color: #0F059C;color: white; margin-bottom:10px'>Commencez</button>";
+	html += "\n				</div>";
+	html += "\n			</div>";
+	html += "\n		</div>";
+	html += "\n</div>";
+	html += "\n<!-- ============================================== -->";
+	return html;
+}
+
+
+//=======================================================================
+function login() 
+// =======================================================================
+{
+
+	//$('body').append(admin());
+	$('#login-window').modal('show');
+}
+
+
+//=======================================================================
+function popup() 
+// =======================================================================
+{
+	$('body').append(resource());
+	$('#resource-window').modal('show');
+}
+
+function getCookie(c_name) {
+    var c_value = document.cookie;
+    var c_start = c_value.indexOf(" " + c_name + "=");
+    if (c_start == -1) {
+        c_start = c_value.indexOf(c_name + "=");
+    }
+    if (c_start == -1) {
+        c_value = null;
+    } else {
+        c_start = c_value.indexOf("=", c_start) + 1;
+        var c_end = c_value.indexOf(";", c_start);
+        if (c_end == -1) {
+            c_end = c_value.length;
+        }
+        c_value = unescape(c_value.substring(c_start, c_end));
+    }
+    return c_value;
+}
+
+
 
 //==============================
 function getNavBar(type,portfolioid,edit)
 //==============================
 {
+	$('body').append(admin());
 	var html = "";
 	html += "<nav class='navbar navbar-expand-md navbar-light bg-lightfont'>";
 	html += "	<div class='dropdown'>";
@@ -152,13 +242,20 @@ function getNavBar(type,portfolioid,edit)
 	html += "		</button>";
 	html += "		<div class='navbar-collapse collapse' id='collapse-1'>";
 	html += "			<ul class='mr-auto navbar-nav'>";
+	//---------------------ADMIN-----------------------
+	if (type=='login' || type=="create_account") {
+		html += "			<li id='navbar-admin' class='nav-item icon'><a class='nav-link' onclick=\"login()\" data-title='"+karutaStr[LANG]["button-delete"]+"' data-toggle='tooltip' data-placement='bottom'><i class='fas fa-user-cog'></i></a></li>";
+	}
 	//---------------------HOME - TECHNICAL SUPPORT-----------------------
 	if (type=='login' || type=="create_account") {
-		html += "			<li id='navbar-mailto' class='nav-item icon'><a class='nav-link' href='mailto:"+g_configVar['technical-support']+"?subject="+karutaStr[LANG]['technical_support']+" ("+appliname+")' data-title='"+karutaStr[LANG]["button-technical-support"]+"' data-toggle='tooltip' data-placement='bottom'><i class='fas fa-envelope' data-title='"+karutaStr[LANG]["technical_support"]+"' data-toggle='tooltip' data-placement='bottom'></i></a></li>";
+		//html += "<i class='button fas fa-user-cog onclick=\"confirmDel()\" data-title='"+karutaStr[LANG]["button-delete"]+"' data-toggle='tooltip' data-placement='bottom'></i>";
+
+		html += "			<li id='navbar-mailto' class='nav-item icon'><a class='nav-link' href='https://ent.univ-amu.fr/esup-helpdesk/stylesheets/cas.faces?args=page%3daddTicket%26categoryId=2038&ticket=ST-14376278-ZEpJR4ROxajC5oEIWuPmRg2a2CY-ident' target='_blank' data-title='"+karutaStr[LANG]["technical_support"]+"' data-toggle='tooltip' data-placement='bottom'><i class='fas fa-envelope'></i></a></li>";
+		//html += "			<li id='navbar-mailto' class='nav-item icon'><a class='nav-link' href='mailto:"+g_configVar['technical-support']+"?subject="+karutaStr[LANG]['technical_support']+" ("+appliname+")' data-title='"+karutaStr[LANG]["button-technical-support"]+"' data-toggle='tooltip' data-placement='bottom'><i class='fas fa-envelope' data-title='"+karutaStr[LANG]["technical_support"]+"' data-toggle='tooltip' data-placement='bottom'></i></a></li>";
 	} else if (USER.username.indexOf("karuser")<0) {
 		html += "			<li id='navbar-home' class='nav-item icon'><a class='nav-link' onclick='show_list_page()' data-title='"+karutaStr[LANG]["home"]+"' data-toggle='tooltip' data-placement='bottom'><i class='fas fa-home'></i></a></li>";
 		//mettre un lien vers HelpDesk au lieu d'envoi vers un mail prédestiné 
-		html += "			<li id='navbar-mailto' class='nav-item icon'><a class='nav-link' href='https://ent.univ-amu.fr/esup-helpdesk/stylesheets/ticketAdd.faces' target='_blank' data-title='"+karutaStr[LANG]["technical_support"]+"' data-toggle='tooltip' data-placement='bottom'><i class='fas fa-envelope'></i></a></li>";
+		html += "			<li id='navbar-mailto' class='nav-item icon'><a class='nav-link' href='https://ent.univ-amu.fr/esup-helpdesk/stylesheets/cas.faces?args=page%3daddTicket%26categoryId=2038&ticket=ST-14376278-ZEpJR4ROxajC5oEIWuPmRg2a2CY-ident' target='_blank' data-title='"+karutaStr[LANG]["technical_support"]+"' data-toggle='tooltip' data-placement='bottom'><i class='fas fa-envelope'></i></a></li>";
 		//html += "			<li id='navbar-mailto' class='nav-item icon'><a class='nav-link' href='javascript:displayTechSupportForm()' data-title='"+karutaStr[LANG]["technical_support"]+"' data-toggle='tooltip' data-placement='bottom'><i class='fas fa-envelope'></i></a></li>";
 	}
 	//-------------------LANGUAGES---------------------------displayTechSupportForm(langcode)
