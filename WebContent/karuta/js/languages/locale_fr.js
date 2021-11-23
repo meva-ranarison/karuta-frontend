@@ -104,6 +104,7 @@ karutaStr["fr"]["button-increase"] = "Augmenter la taille des caractères";
 karutaStr["fr"]["button-decrease"] = "Diminuer la taille des caractères";
 karutaStr["fr"]["copy"] = "Copier";
 karutaStr["fr"]["copied"] = "Copié";
+karutaStr["fr"]["waitreport"] = "Patience, le rapport est exécuté sur le serveur. Revenez dans quelques minutes pour visualiser le rapport.";
 
 //=========================================
 //========== ERRORS =======================
@@ -581,7 +582,7 @@ karutaStr['fr']['startday']="Moment d'exécution";
 karutaStr['fr']['time']="Heure (HH:MM)";
 karutaStr['fr']['freq']="Fréquence";
 karutaStr['fr']['execroles']="Rôles - Exécuter";
-karutaStr['fr']['exec']="Exécuter maintenant";
+karutaStr['fr']['exec']="Re-exécuter maintenant";
 
 karutaStr['fr']['uploaded-by']="Téléversé par";
 karutaStr['fr']['date']="Date";

@@ -163,7 +163,7 @@ UIFactory["Node"].prototype.displayMenus = function(dest,langcode)
 				url : urlS,
 				success : function (data){
 					var url = window.location.href;
-					var serverURL = url.substring(0,url.lastIndexOf(appliname)+appliname.length);
+					var serverURL = url.substring(0,url.lastIndexOf(appliname+"/")+appliname.length);
 					url = serverURL+"/application/htm/public.htm?i="+data+"&amp;lang="+languages[langcode];
 					$("#2world-"+this.id).html("<a  class='fas fa-globe button' target='_blank' href='"+url+"' data-title='"+karutaStr[LANG]["button-2world"]+"' data-toggle='tooltip' data-placement='bottom'></a> ");
 				}
@@ -253,10 +253,13 @@ UIFactory["Node"].getMenus = function(node,langcode)
 		html += "	</div>"; // class='dropdown-menu'
 		html += "</span>"; // class='dropdown'
 	}
-	//------------- specific menu ---------------
+	//--------------------------------------------------------
+	//------------- menu -------------------------------------
+	//--------------------------------------------------------
 	var no_monomenu = 0;
 	try {
-		if ((node.depth>0 || node.asmtype == 'asmUnitStructure') && node.menuroles != undefined && node.menuroles.length>10 && (node.menuroles.indexOf(node.userrole)>-1 || node.menuroles.indexOf($(USER.username_node).text())>-1 || (node.menuroles.containsArrayElt(g_userroles) && node.menuroles.indexOf("designer")<0) || USER.admin || g_userroles[0]=='designer') ){
+		//------------- specific menu ---------------
+		if ( (this.submitted!='Y' || this.unsubmitroles!='none') && (node.depth>0 || node.asmtype == 'asmUnitStructure') && node.menuroles != undefined && node.menuroles.length>10 && (node.menuroles.indexOf(node.userrole)>-1 || node.menuroles.indexOf($(USER.username_node).text())>-1 || (node.menuroles.containsArrayElt(g_userroles) && node.menuroles.indexOf("designer")<0) || USER.admin || g_userroles[0]=='designer') ){
 			//--------------------------------
 			var mlabels = [];
 			var labelitems = node.menulabels.split(";");
@@ -282,7 +285,7 @@ UIFactory["Node"].getMenus = function(node,langcode)
 					menus[i][3] = ""; // roles
 					menus[i][4] = ""; // target
 					menus[i][5] = ""; // condition
-					
+
 				} else {
 					menus[i][0] = subitems[0]; // portfolio code
 					menus[i][1] = subitems[1]; // semantic tag
@@ -401,7 +404,7 @@ UIFactory["Node"].getMenus = function(node,langcode)
 								}
 								//---------------------------------------------------------
 							}
-							
+
 						}
 						//-------------------------------------------------------------
 						if (menus[i][3].indexOf(node.userrole)>-1 || menus[i][3].containsArrayElt(g_userroles) || menus[i][3].indexOf($(USER.username_node).text())>-1 || USER.admin || g_userroles[0]=='designer')
@@ -427,7 +430,11 @@ UIFactory["Node"].getMenus = function(node,langcode)
 				var titles = [];
 				var title = "";
 				try {
-					titles = menus[i][2].split("/");
+					for (var j=0;j<menus[i][2].length;j++){
+						if (menus[i][2].charAt(j)=='/' && j>3 && menus[i][2].charAt(j-3) == '@')
+							menus[i][2] = menus[i][2].substring(0, j) + '|' + menus[i][2].substring(j + 1);
+					}
+					titles = menus[i][2].split("|");
 					if (menus[i][2].indexOf("@")>-1) { // lang@fr/lang@en/...
 						for (var j=0; j<titles.length; j++){
 							if (titles[j].indexOf("@"+languages[langcode])>-1)
@@ -516,7 +523,7 @@ UIFactory["Node"].getMenus = function(node,langcode)
 					html += " >"+labels[1]+"</span>";
 				}
 				html += "<div class='alert alert-success button text-button'>"+labels[2]+node.submitteddate+"</div>";
-			} 
+			}
 			else {
 				html += "<div class='alert alert-danger button text-button'>"+labels[3]+"</div>";
 			}
@@ -644,4 +651,3 @@ UIFactory["Node"].getMenus = function(node,langcode)
 	//--------------------------------------------------
 	return html;
 	}
-
