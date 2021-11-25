@@ -50,6 +50,33 @@ function callSubmit(encrypt_url,lang)
 }
 
 //==============================
+function callSubmit_karutareport(encrypt_url,lang)
+//==============================
+{
+	//fonction spéciale pour karuta-report pour se connecter
+	var data = "<credential><login>"+document.getElementById("useridentifier_karuta-report").value+"</login><password>"+document.getElementById("password_karuta-report").value+"</password></credential>";
+	localStorage.setItem('pwd',document.getElementById("password_karuta-report").value);
+	$.ajax({
+		contentType: "application/xml",
+		type : "POST",
+		dataType : "text",
+		url : serverBCK_API+"/credential/login",
+		data: data,
+		i : encrypt_url,
+		lang :lang,
+		success : function(data) {
+			if (self.encrypt_url=="")
+				window.location="karuta.htm";
+			else
+				window.location="public.htm?i="+self.encrypt_url+"&lang="+self.lang
+		},
+		error : function(jqxhr,textStatus) {
+			alertHTML("Identification : "+jqxhr.responseText);
+		}
+	});
+}
+
+//==============================
 function loginPublic()
 //==============================
 {
@@ -104,8 +131,10 @@ function getLogin(encrypt_url,lang)
 	//html += "<h5>"+karutaStr[LANG]['connection-cas2']+"</h5>";
 	//html += "</div>";
 	//on ajoute l'useridentifier et le password pour que karuta-report puisse se connecter
-	html += "<input type='hidden' id='useridentifier' type='text'>"; 
-	html += "<input type='hidden' id='password' type='password'>";
+	html += "<input type='hidden' id='useridentifier_karuta-report'>";
+	html += "<input type='hidden' id='password_karuta-report'>";
+	//html += "<input id='useridentifier' class='form-control' placeholder=\""+karutaStr[LANG]['username']+"\" type='text'>";
+	//html += "<input id='password' class='form-control' placeholder=\""+karutaStr[LANG]['password']+"\" type='password'>";
 	//html += "<button class='button-login' onclick=\"javascript:callSubmit('"+encrypt_url+"','"+lang+"')\">"+karutaStr[LANG]['login']+"</button>";
 	return html;
 }
