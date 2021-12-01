@@ -2361,7 +2361,7 @@ UIFactory["Node"].displayBlock = function(root,dest,depth,langcode,edit,inline,b
 			}
 			//------------ Dashboard -----------------
 			if (nodetype == "asmContext" && node.resource.type=='Dashboard') {
-				$("#"+dest).append($("<div class='row'><div id='dashboard_"+uuid+"' class='createreport col-md-offset-1 col-md-11'></div></div>"));
+				$("#"+dest).append($("<div class='row'><div id='dashboard_"+uuid+"' class='createreport'></div></div>"));
 				var root_node = g_portfolio_current;
 				genDashboardContent("dashboard_"+uuid,uuid,parent,root_node);
 				if (g_userroles[0]!='designer')
